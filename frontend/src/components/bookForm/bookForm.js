@@ -1,9 +1,10 @@
- import {useState} from 'react'
- import {useDispatch} from 'react-redux'
- import './bookForm.css'
+import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import './bookForm.css'
 import { addBook } from '../../redux/books/actionCreators'
+import { uid } from 'uid';
 
- export function  BookForm () {
+export function  BookForm () {
     const [title, setTitle] = useState('')
     const [author,setAuthor]=useState('')
     const dispatch=useDispatch()
@@ -13,7 +14,8 @@ import { addBook } from '../../redux/books/actionCreators'
         if(title  &&  author){
             const book = {
                 title,
-                author
+                author,
+                id:uid()
             }
 
             dispatch( addBook(book))
