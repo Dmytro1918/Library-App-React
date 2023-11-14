@@ -5,8 +5,6 @@ import { BooksReducer } from './books/reducer'
     {
         reducer:{
             books:BooksReducer,
-          
-
         }
     }
 )

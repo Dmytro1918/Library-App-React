@@ -19,7 +19,6 @@ export function  BookForm () {
             }
 
             dispatch( addBook(book))
-            console.log( ( addBook(book)))
             setAuthor('')
             setTitle('')
         }

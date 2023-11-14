@@ -8,4 +8,10 @@ export const addBook = (newBook)=>{
 
 }
 
+export const deleteBook = (bookId) => {
+    return {
+        type:a.DELETE_BOOK,
+        payload:bookId
+    }
+}
 

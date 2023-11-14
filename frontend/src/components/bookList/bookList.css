@@ -42,12 +42,12 @@
 }
 
 .book-list .book-info {
-    flex: 1;
+    flex: 2 2 10%;
     text-align: left;
 }
 
 .book-list .book-actions {
-    display: flex;
+   
     align-items: center;
 }
 
