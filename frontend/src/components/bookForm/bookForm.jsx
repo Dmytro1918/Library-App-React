@@ -5,6 +5,7 @@ import { addBook } from '../../redux/books/actionCreators'
 import { uid } from 'uid';
 import { bookList } from '../../books.js';
 
+
 export function  BookForm () {
     const [title, setTitle] = useState('')
     const [author,setAuthor]=useState('')
@@ -16,7 +17,8 @@ export function  BookForm () {
             const book = {
                 title,
                 author,
-                id:uid()
+                id:uid(),
+                isFavourite: false
             }
 
             dispatch( addBook(book))
@@ -28,7 +30,8 @@ export function  BookForm () {
     const bookRandomId=bookList.map((book)=>({
         
         ...book,
-        id:uid()
+        id:uid(),
+        isFavourite: false
         
     }))
    

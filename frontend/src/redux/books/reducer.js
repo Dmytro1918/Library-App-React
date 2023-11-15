@@ -12,8 +12,15 @@ export const BooksReducer = (state=initialState,action) => {
         case a.DELETE_BOOK:
             return state.filter((book)=> book.id!==action.payload)
             
-    
+        case a.ADD_FAVOURITE:
+            return state.map((book)=>
+            book.id===action.payload?
+          {...book,isFavourite:!book.isFavourite}:
+          book
+        )
         default:
             return state;
     }
 }
+
+

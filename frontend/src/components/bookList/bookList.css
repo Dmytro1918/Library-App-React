@@ -57,5 +57,8 @@
     margin: 0 20px;
     cursor: pointer;
     transition: color 0.3s ease;
-    color: #fca510;
+    color: rgb(172, 11, 143);
+}
+.book-list .star-icon:hover{
+    color: rgb(11, 23, 89);
 }
