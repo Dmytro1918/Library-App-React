@@ -10,10 +10,12 @@
 }
 
 .filter input[type='text'] {
-    width: 80%;
+    width: 70%;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 3px;
+    font-size: 16px;
+    height: 2.1vh;
 }
 
 .filter button {
@@ -25,6 +27,7 @@
     cursor: pointer;
     margin: 10px;
     transition: background-color 0.3s ease;
+    font-size: 16px;
 }
 
 .filter button:hover {
