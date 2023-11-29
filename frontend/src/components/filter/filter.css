@@ -1,6 +1,6 @@
 .filter-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .filter input[type='text'] {
-    width: 70%;
+    width: 100%;
     padding: 8px;
     border: 2px solid #ccc;
     border-radius: 3px;

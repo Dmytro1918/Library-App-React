@@ -3,16 +3,18 @@ import './bookList.css'
 import { useState } from 'react'
 import { deleteBook, toggleFavourite } from '../../redux/books/actionCreators'
 import { BiSolidArchiveIn, BiSolidBeenHere  } from "react-icons/bi";
-import { selectTitleFilter } from '../../redux/slice/slicer';
+import { selectTitleFilter, selectNameFilter } from '../../redux/slice/slicer';
 
 
 export function BookList  () {
-    let  books = useSelector((state)=>state.books)
+    let books = useSelector((state)=>state.books)
     const titleFilter = useSelector(selectTitleFilter)
+    const nameFilter = useSelector(selectNameFilter)
     const dispatch = useDispatch()
     const filteredBooks = books.filter((book)=>{
-       const matchedBook = book.title.toLowerCase().includes(titleFilter.toLowerCase())
-        return matchedBook;
+       const matchedByTitle = book.title.toLowerCase().includes(titleFilter.toLowerCase())
+       const matchedByName = book.author.toLowerCase().includes(nameFilter.toLowerCase())
+        return matchedByTitle && matchedByName;
         
     })
 
