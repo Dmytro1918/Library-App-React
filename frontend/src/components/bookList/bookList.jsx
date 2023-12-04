@@ -18,11 +18,10 @@ export function BookList  () {
         
         const matchedByTitle = book.title.toLowerCase().includes(titleFilter.toLowerCase())
         const matchedByName = book.author.toLowerCase().includes(nameFilter.toLowerCase())
-
+       
     return (!favBook || book.isFavourite) && matchedByTitle && matchedByName
     }) 
     
-   
 
     const handleDelete = (ID) => {
         dispatch(deleteBook(ID))
@@ -31,6 +30,22 @@ export function BookList  () {
         dispatch(toggleFavourite(ID))
     }
 
+    const highlightedText = (enteredText, searchText) => {
+        const lowerCaseText = enteredText.toLowerCase()
+        const lowerCaseSearchItem = searchText.toLowerCase()
+
+        const startIndex = lowerCaseText.indexOf(lowerCaseSearchItem)
+        if(startIndex===-1) return enteredText
+
+        const endIndex = startIndex + searchText.length
+        const highlightedText =
+        enteredText.substring(0, startIndex) +
+            `<span class="highlight">${enteredText.substring(startIndex, endIndex)}</span>` +
+            enteredText.substring(endIndex);
+
+    return highlightedText;
+
+    }
 
     return(
         
@@ -42,7 +57,11 @@ export function BookList  () {
                         {
                         filteredBooks.map((book, i)=>
                             <li key={i}>
-                                <div className='book-info'>{++i}. {book.title} by <strong>{book.author}</strong>
+                                <div className='book-info'>{++i}
+                                {'. '}
+                                <span dangerouslySetInnerHTML={{ __html: highlightedText(book.title, titleFilter)}}></span>
+                                    {' by '}
+                                <strong  dangerouslySetInnerHTML={{__html:highlightedText(book.author,nameFilter)}}/>
                                 </div>
                                {book.isFavourite ? 
                                <BiSolidBeenHere onClick={()=>handleFavourite(book.id)} className='star-icon'/>
