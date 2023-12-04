@@ -9,6 +9,19 @@
     text-align: center;
 }
 
+.icon-fav {
+    margin-right:-100px;
+    height: 2.5em;
+    width: 2.5em;
+}
+.icon-fav-div{
+    cursor: pointer;
+}
+.icon-fav:hover{
+   
+    height: 2em;
+    width: 2em;
+}
 .filter input[type='text'] {
     width: 100%;
     padding: 8px;
@@ -17,7 +30,11 @@
     font-size: 16px;
     height: 2.1vh;
 }
-
+.filter-icon{
+    width: 2em;
+    height: 2em;
+    margin-right: -90px;
+}
 .filter button {
     background-color: #007bff;
     color: #fff;
