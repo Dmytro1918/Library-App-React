@@ -30,22 +30,22 @@ export function BookList  () {
         dispatch(toggleFavourite(ID))
     }
 
-    const highlightedText = (enteredText, searchText) => {
-        const lowerCaseText = enteredText.toLowerCase()
-        const lowerCaseSearchItem = searchText.toLowerCase()
+    
 
-        const startIndex = lowerCaseText.indexOf(lowerCaseSearchItem)
-        if(startIndex===-1) return enteredText
-
-        const endIndex = startIndex + searchText.length
-        const highlightedText =
-        enteredText.substring(0, startIndex) +
-            `<span class="highlight">${enteredText.substring(startIndex, endIndex)}</span>` +
-            enteredText.substring(endIndex);
-
-    return highlightedText;
-
+    const highlightedTextwithReg = (text, filter) => {
+        if(!text) return text
+        const regex = new RegExp(`(${filter})`, 'gi')
+        return text.split(regex).map((item,i)=>{
+            if (item.toLowerCase()===filter.toLowerCase())
+            {
+                return(
+                <span key={i} className='highlight'>{item}</span>)
+            }
+            return item
+        })
     }
+
+
 
     return(
         
@@ -58,10 +58,10 @@ export function BookList  () {
                         filteredBooks.map((book, i)=>
                             <li key={i}>
                                 <div className='book-info'>{++i}
-                                {'. '}
-                                <span dangerouslySetInnerHTML={{ __html: highlightedText(book.title, titleFilter)}}></span>
-                                    {' by '}
-                                <strong  dangerouslySetInnerHTML={{__html:highlightedText(book.author,nameFilter)}}/>
+                                    {'. '}
+                                    {highlightedTextwithReg(book.title, titleFilter)}
+                                    {' by '} 
+                                    <strong>{highlightedTextwithReg(book.author, nameFilter)}</strong>
                                 </div>
                                {book.isFavourite ? 
                                <BiSolidBeenHere onClick={()=>handleFavourite(book.id)} className='star-icon'/>
