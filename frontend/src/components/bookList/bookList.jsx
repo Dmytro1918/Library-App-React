@@ -1,33 +1,32 @@
 import { useDispatch, useSelector } from 'react-redux'
 import './bookList.css'
-import { useState } from 'react'
-import { deleteBook, toggleFavourite } from '../../redux/books/actionCreators'
 import { BiSolidArchiveIn, BiSolidBeenHere  } from "react-icons/bi";
 import { selectTitleFilter, selectNameFilter,selectFav } from '../../redux/slice/slicer';
+import { addFavourite, deleteBook } from '../../redux/books/bookSlice';
 
 
 export function BookList  () {
     let books = useSelector((state)=>state.books)
     const titleFilter = useSelector(selectTitleFilter)
     const nameFilter = useSelector(selectNameFilter)
-    const favBook = useSelector(selectFav)
+    const favBooks = useSelector(selectFav)
     const dispatch = useDispatch()
-
+  
 
     const filteredBooks = books.filter((book)=> {
         
         const matchedByTitle = book.title.toLowerCase().includes(titleFilter.toLowerCase())
         const matchedByName = book.author.toLowerCase().includes(nameFilter.toLowerCase())
        
-    return (!favBook || book.isFavourite) && matchedByTitle && matchedByName
+    return (!favBooks || book.isFavourite) && matchedByTitle && matchedByName
     }) 
-    
+    console.log(filteredBooks)
 
     const handleDelete = (ID) => {
         dispatch(deleteBook(ID))
     }
     const handleFavourite = (ID) => {
-        dispatch(toggleFavourite(ID))
+        dispatch(addFavourite(ID))
     }
 
     

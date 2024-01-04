@@ -6,8 +6,6 @@ const initialState = {
     title:"",
     author: "",
     isFavourite:false,
-       
-    
 
 }
 
